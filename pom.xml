@@ -25,6 +25,35 @@
       <artifactId>openxava-core</artifactId>
       <version>6.6.2</version>
     </dependency>
+    <dependency>
+      <groupId>com.openxava</groupId>
+      <artifactId>openxava-addons</artifactId>
+      <version>6.6.2</version>
+    </dependency>
+
+    <!-- tmr ini: Mover a openxava-core -->
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <version>9.0.22</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-jasper</artifactId>
+      <version>9.0.22</version>
+    </dependency>
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-dbcp</artifactId>
+      <version>9.0.22</version>
+    </dependency>
+
+    <!-- tmr fin: Mover a openxava-core -->
   </dependencies>
 
   <build>
@@ -32,19 +61,21 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.mortbay.jetty</groupId>
-          <artifactId>maven-jetty-plugin</artifactId>
-          <configuration>
-            <scanIntervalSeconds>3</scanIntervalSeconds>
-            <scanTargets>
-              <scanTarget>target/classes</scanTarget>
-            </scanTargets>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>org.opoo.maven</groupId>
           <artifactId>tomcat9-maven-plugin</artifactId>
           <version>3.0.1</version>
+        </plugin>
+        <plugin>
+          <groupId>fr.avianey.mojo</groupId>
+          <artifactId>hsqldb-maven-plugin</artifactId>
+          <!-- shared config for start and stop -->
+          <configuration>
+            <driver>org.hsqldb.jdbcDriver</driver>
+            <path>data</path>
+            <address>localhost</address>
+            <username>sa</username>
+          </configuration>
+
         </plugin>
       </plugins>
     </pluginManagement>
